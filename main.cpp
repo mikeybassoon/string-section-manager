@@ -3,6 +3,7 @@
  */
 
 #include "orchestra.h"
+#include "functions.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -34,75 +35,43 @@ int main(){
 				cerr << "ERROR: Cannot connect to input file \"orchestraRoster.txt\", ending program.";
 				return -1;
 			}
-		inputFile.ignore(256, '\n'); // skip first line of input file
-		while(true){ // until entire file is read
+			else cout << "Roster file opened successfully . . ." << endl;
+		inputFile.ignore(256, '\n');
+		while(!inputFile.eof()){ // until entire file is read
+			int linecount = 1;
+
 			string section;
-			int vectorIndex;
-			int masters, pops, specials, kids;
-			string title;
-			string name;
 			inputFile >> section;
-			inputFile >> masters >> pops >> specials >> kids;
-			inputFile >> title;
-			getline(inputFile, name, '\n');
-			if(section == "vln1"){
-				violin1Section.resize(violin1Section.size() + 1); // increase section size by 1
-				vectorIndex = violin1Section.size() - 1; // find last index of section vector
-				violin1Section[vectorIndex].add_masters(masters);
-				violin1Section[vectorIndex].add_pops(pops);
-				violin1Section[vectorIndex].add_specials(specials);
-				violin1Section[vectorIndex].add_kids(kids);
-				violin1Section[vectorIndex].set_title(title);
-				violin1Section[vectorIndex].set_name(name);
+			if(section == "vln1")
+				saveMusicianStats(violin1Section, inputFile);
+			else if(section == "vln2")
+				saveMusicianStats(violin2Section, inputFile);
+			else if(section == "vla")
+				saveMusicianStats(violaSection, inputFile);
+			else if(section == "vcl")
+				saveMusicianStats(celloSection, inputFile);
+			else if(section == "cb")
+				saveMusicianStats(bassSection, inputFile);
+			else{
+				cerr << "ERROR: Invalid section identifier in input file: line " << linecount << endl;
+				cerr << "Ending program" << endl;
+				return -1;
 			}
-			else if(section == "vln2"){
-				violin2Section.resize(violin2Section.size() + 1); // increase section size by 1
-				vectorIndex = violin2Section.size() - 1; // find last index of section vector
-				violin2Section[vectorIndex].add_masters(masters);
-				violin2Section[vectorIndex].add_pops(pops);
-				violin2Section[vectorIndex].add_specials(specials);
-				violin2Section[vectorIndex].add_kids(kids);
-				violin2Section[vectorIndex].set_title(title);
-				violin2Section[vectorIndex].set_name(name);
-			}
-			else if(section == "vla"){
-				violaSection.resize(violaSection.size() + 1); // increase section size by 1
-				vectorIndex = violaSection.size() - 1; // find last index of section vector
-				violaSection[vectorIndex].add_masters(masters);
-				violaSection[vectorIndex].add_pops(pops);
-				violaSection[vectorIndex].add_specials(specials);
-				violaSection[vectorIndex].add_kids(kids);
-				violaSection[vectorIndex].set_title(title);
-				violaSection[vectorIndex].set_name(name);
-			}
-			else if(section == "vcl"){
-				celloSection.resize(celloSection.size() + 1); // increase section size by 1
-				vectorIndex = celloSection.size() - 1; // find last index of section vector
-				celloSection[vectorIndex].add_masters(masters);
-				celloSection[vectorIndex].add_pops(pops);
-				celloSection[vectorIndex].add_specials(specials);
-				celloSection[vectorIndex].add_kids(kids);
-				celloSection[vectorIndex].set_title(title);
-				celloSection[vectorIndex].set_name(name);
-			}
-			else if(section == "cb"){
-				bassSection.resize(bassSection.size() + 1); // increase section size by 1
-				vectorIndex = bassSection.size() - 1; // find last index of section vector
-				bassSection[vectorIndex].add_masters(masters);
-				bassSection[vectorIndex].add_pops(pops);
-				bassSection[vectorIndex].add_specials(specials);
-				bassSection[vectorIndex].add_kids(kids);
-				bassSection[vectorIndex].set_title(title);
-				bassSection[vectorIndex].set_name(name);
-			}
+			linecount++;
 		} // input file read
+		inputFile.close();
 		cout << "Roster updated!" << endl;
 
-		cout << endl << "Please select from the following options:" << endl;
-		cout << "1. Create new program" << endl;
-		cout << "2. View/edit existing program" << endl;
-		cout << "3. View/edit section roster" << endl;
-		cout << "9. Exit program" << endl;
+	int userSelection = main_menu(); // display main menu, prompt user for input
+	if(userSelection == 0) // exit program?
+		return 0;
+	else if(userSelection == 1) // create new program?
+		create_program();
+	else if(userSelection == 2) // edit program?
+		edit_program();
+	else if(userSelection == 3) // edit section roster?
+		edit_roster();
+
 	} // end of main program loop
 	return 0;
 }
