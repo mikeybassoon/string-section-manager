@@ -36,10 +36,10 @@ int main(){
 				return -1;
 			}
 			else cout << "Roster file opened successfully . . ." << endl;
-		inputFile.ignore(256, '\n');
+		inputFile.ignore(256, '\n'); // skip first line of input file (key to interpret the file)
+		inputFile.ignore(256, '\n'); // skip second line of input file (warning)
+		int linecount = 3; // initialize line counter (for error checking loop)
 		while(!inputFile.eof()){ // until entire file is read
-			int linecount = 1;
-
 			string section;
 			inputFile >> section;
 			if(section == "vln1")
@@ -54,6 +54,7 @@ int main(){
 				saveMusicianStats(bassSection, inputFile);
 			else{
 				cerr << "ERROR: Invalid section identifier in input file: line " << linecount << endl;
+				cerr << "Value given: " << section << endl;
 				cerr << "Ending program" << endl;
 				return -1;
 			}
@@ -63,14 +64,21 @@ int main(){
 		cout << "Roster updated!" << endl;
 
 	int userSelection = main_menu(); // display main menu, prompt user for input
-	if(userSelection == 0) // exit program?
+	if(userSelection < 0 or userSelection > 3){ // error check result of main_menu()
+		cerr << "ERROR: invalid return in main_menu()" << endl;
+		return -1;
+	}
+	if(userSelection == 0){ // exit program?
+		cout << "Exiting program." << endl;
 		return 0;
+	}
 	else if(userSelection == 1) // create new program?
 		create_program();
 	else if(userSelection == 2) // edit program?
 		edit_program();
 	else if(userSelection == 3) // edit section roster?
 		edit_roster();
+
 
 	} // end of main program loop
 	return 0;

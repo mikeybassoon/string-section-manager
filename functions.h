@@ -33,11 +33,20 @@ void saveMusicianStats(vector<Musician>&, ifstream&);
  * Purpose: displays main program menu and returns user selection
  * No parameters
  * Returns an int representing a valid user selection
+ * 		If function executes incorrectly, returns -1
  * No side effect
  */
 int main_menu();
 
-void create_program(); // requires definition
+/* void create_program()
+ * Purpose: generates a roster for a new program
+ * No parameters
+ * No return
+ * Side effects:
+ * 		<1> Roster file (.txt) created for that program
+ * 		<2> Orchestra roster updated with new gig totals for each musician
+ */
+void create_program();
 
 void edit_program(); // requires definition
 

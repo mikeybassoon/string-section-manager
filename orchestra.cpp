@@ -82,9 +82,8 @@ int Musician::get_kids(){
 	return kidsScheduled;
 }
 
-Gig::Gig(string gigSeries, string gigDate){
+Gig::Gig(int gigSeries){
 	series = gigSeries;
-	date = gigDate;
 }
 
 Gig::~Gig(){
@@ -109,4 +108,24 @@ void Gig::set_celloCount(int count){
 
 void Gig::set_bassCount(int count){
 	bassRoster.resize(count);
+}
+
+int Gig::get_violin1Count(){
+	return violin1Roster.size();
+}
+
+int Gig::get_violin2Count(){
+	return violin2Roster.size();
+}
+
+int Gig::get_violaCount(){
+	return violaRoster.size();
+}
+
+int Gig::get_celloCount(){
+	return celloRoster.size();
+}
+
+int Gig::get_bassCount(){
+	return bassRoster.size();
 }

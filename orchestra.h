@@ -45,22 +45,26 @@ public:
 
 class Gig{
 private:
-	string series; // masters, pops, specials or kids
-	string date; // format: yy/mm/dd
+	int series; // masters = 1, pops = 2, specials = 3, kids = 4
 	vector<Musician> violin1Roster, violin2Roster, violaRoster, celloRoster, bassRoster; // section roster for the gig
 public:
+	Gig(); // default constructor
 	/* Gig() class constructor
 	 * Parameters:
-	 * 		<1> string - series name (masters, pops, specials or kids)
-	 * 		<2> string - date (format: yy/mm/dd)
+	 * 		<1> int - series ID number
 	 */
-	Gig(string, string);
+	Gig(int);
 	~Gig(); // destructor
 	void set_violin1Count(int);
 	void set_violin2Count(int);
 	void set_violaCount(int);
 	void set_celloCount(int);
 	void set_bassCount(int);
+	int get_violin1Count();
+	int get_violin2Count();
+	int get_violaCount();
+	int get_celloCount();
+	int get_bassCount();
 };
 
 #endif /* ORCHESTRA_H_ */
