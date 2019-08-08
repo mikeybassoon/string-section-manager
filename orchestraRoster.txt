@@ -1,31 +1,33 @@
-vln1 0 0 0 0  Ludwig Milde
-vln1 0 0 0 0  Sol Schoenbach
-vln1 0 0 0 0  Simon Kovar
-vln1 0 0 0 0  Norman Herzberg
-vln1 0 0 0 0  David van Hoesen
-vln1 0 0 0 0  Klaus Thunemann
-vln1 0 0 0 0  Milan Turkovic
-vln1 0 0 0 0  Julius Weissenborn
-vln1 0 0 0 0  Roger Birnstingl
-vln2 0 0 0 0  David Breidenthal
-vln2 0 0 0 0  Charles Sirard
-vln2 0 0 0 0  George Goslee
-vln2 0 0 0 0  Leonard Sharrow
-vln2 0 0 0 0  Louis Skinner
-vln2 0 0 0 0  Willard Elliott
-vln2 0 0 0 0  Hugo Fox
-vln2 0 0 0 0  Hugo Litke
-vla 0 0 0 0  Oskar Modess
-vla 0 0 0 0  Walter Guetter
-vla 0 0 0 0  Hjalmar Rabe
-vla 0 0 0 0  Sherman Walt
-vla 0 0 0 0  Ferdinand Del Negro
-vcl 0 0 0 0  Frederick Guenzel
-vcl 0 0 0 0  Peter Sadony
-vcl 0 0 0 0  Raymond Allard
-vcl 0 0 0 0  Benjamin Kohon
-vcl 0 0 0 0  Bernard Garfield
-cb 0 0 0 0  Maurice Allard
-cb 0 0 0 0  Stephen Maxym
-cb 0 0 0 0  Hugo Burghauser
-cb 0 0 0 0  Charles McCracken
+KEY: instrument/masters/pops/specials/kids/title/name
+LAST LINE OF THIS FILE MUST CONTAIN A MUSICIAN  RECORD FOR THIS TO WORK
+vln1 0 0 0 0  Concertmaster Ludwig Milde
+vln1 0 0 0 0  ACM Sol Schoenbach
+vln1 0 0 0 0  none Simon Kovar
+vln1 0 0 0 0  none Norman Herzberg
+vln1 0 0 0 0  none David van Hoesen
+vln1 0 0 0 0  none Klaus Thunemann
+vln1 0 0 0 0  none Milan Turkovic
+vln1 0 0 0 0  none Julius Weissenborn
+vln1 0 0 0 0  none Roger Birnstingl
+vln2 0 0 0 0  Principal Kathleen McLean
+vln2 0 0 0 0  AP Charles Sirard
+vln2 0 0 0 0  none George Goslee
+vln2 0 0 0 0  none Leonard Sharrow
+vln2 0 0 0 0  none Louis Skinner
+vln2 0 0 0 0  none Willard Elliott
+vln2 0 0 0 0  none Hugo Fox
+vln2 0 0 0 0  none Hugo Litke
+vla 0 0 0 0  Principal Kim Walker
+vla 0 0 0 0  AP Walter Guetter
+vla 0 0 0 0  none Hjalmar Rabe
+vla 0 0 0 0  none Sherman Walt
+vla 0 0 0 0  none Ferdinand Del Negro
+vcl 0 0 0 0  Principal Patricia Rogers
+vcl 0 0 0 0  AP Peter Sadony
+vcl 0 0 0 0  none Raymond Allard
+vcl 0 0 0 0  none Benjamin Kohon
+vcl 0 0 0 0  none Bernard Garfield
+cb 0 0 0 0  Principal Maurice Allard
+cb 0 0 0 0  AP Stephen Maxym
+cb 0 0 0 0  none Hugo Burghauser
+cb 0 0 0 0  none Charles McCracken
