@@ -40,17 +40,38 @@ int main_menu();
 
 /* void create_program()
  * Purpose: generates a roster for a new program
- * No parameters
+ * Parameters:
+ * 	<1> vector<Musician> - first violins
+ * 	<2> vector<Musician> - second violins
+ * 	<3> vector<Musician> - violas
+ * 	<4> vector<Musician> - celli
+ * 	<5> vector<Musician> - basses
  * No return
  * Side effects:
  * 		<1> Roster file (.txt) created for that program
  * 		<2> Orchestra roster updated with new gig totals for each musician
  */
-void create_program();
+void create_program(vector<Musician>, vector<Musician>, vector<Musician>,
+		vector<Musician>, vector<Musician>);
 
 void edit_program(); // requires definition
 
 void edit_roster(); // requires definition
+
+/* void generate_section_roster()
+ * Purpose: Fills section roster for a program
+ * Parameters:
+ * 	<1> vector<Musician> - available musicians in a particular section
+ * 	<2> int - count for that section
+ * 	<3> int - series ID for the program
+ * 	<4> ofstream - output file stream
+ * No return
+ * Side effects:
+ * 	<1> Section roster for program added to program roster output file
+ * 		(with one blank line below the roster list)
+ * 	<2> Gig total statistics updated for all musicians
+ */
+void generate_section_roster(vector<Musician>, int, const int, ofstream&);
 
 
 #endif /* FUNCTIONS_H_ */

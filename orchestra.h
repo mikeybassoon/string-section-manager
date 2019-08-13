@@ -22,11 +22,13 @@ private:
 	string title;
 	string name;
 	int mastersScheduled, popsScheduled, specialsScheduled, kidsScheduled;
+	bool available; // available for current gig?
 public:
 	Musician(); // constructor
 	~Musician(); // destructor
 	void set_title(string);
 	void set_name(string);
+	void set_available(bool);
 	void add_masters(); // increment by 1
 	void add_masters(int);
 	void add_pops(); // increment by 1
@@ -35,12 +37,14 @@ public:
 	void add_specials(int);
 	void add_kids(); // increment by 1
 	void add_kids(int);
+	void add_gig(int); // increments gig count, parameter is the series ID for the gig
 	string get_title();
 	string get_name();
 	int get_masters();
 	int get_pops();
 	int get_specials();
 	int get_kids();
+	bool get_available();
 };
 
 class Gig{

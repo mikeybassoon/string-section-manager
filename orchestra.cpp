@@ -26,6 +26,10 @@ void Musician::set_name(string newName){
 	name = newName;
 }
 
+void Musician::set_available(bool status){
+	available = status;
+}
+
 void Musician::add_masters(){
 	mastersScheduled++;
 }
@@ -58,6 +62,17 @@ void Musician::add_specials(int gigs){
 	specialsScheduled += gigs;
 }
 
+void Musician::add_gig(int seriesID){
+	if(seriesID == 1)
+		add_masters();
+	else if(seriesID == 2)
+		add_pops();
+	else if(seriesID == 3)
+		add_specials();
+	else if(seriesID == 4)
+		add_kids();
+}
+
 string Musician::get_title(){
 	return title;
 }
@@ -80,6 +95,10 @@ int Musician::get_specials(){
 
 int Musician::get_kids(){
 	return kidsScheduled;
+}
+
+bool Musician::get_available(){
+	return available;
 }
 
 Gig::Gig(int gigSeries){

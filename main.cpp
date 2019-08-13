@@ -73,7 +73,7 @@ int main(){
 		return 0;
 	}
 	else if(userSelection == 1) // create new program?
-		create_program();
+		create_program(violin1Section, violin2Section, violaSection, celloSection, bassSection);
 	else if(userSelection == 2) // edit program?
 		edit_program();
 	else if(userSelection == 3) // edit section roster?

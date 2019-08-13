@@ -1,8 +1,7 @@
 /*
  * functions.cpp
  *
- *  Created on: Aug 4, 2019
- *      Author: michaelmacaulay
+ * Contains primary functions used by main.cpp
  */
 
 #include "orchestra.h"
@@ -51,7 +50,8 @@ int main_menu(){
 	return -1; // if program failed to execute properly
 }
 
-void create_program(){
+void create_program(vector<Musician> violin1Section, vector<Musician> violin2Section,
+		vector<Musician> violaSection, vector<Musician> celloSection, vector<Musician> bassSection){
 	int seriesID = 0; // holds integer to identify what series we are working with
 	string gigName; // holds user input name for concert cycle
 
@@ -103,7 +103,7 @@ void create_program(){
 	// print header for concert cycle roster
 	concertRoster << "Concert Cycle Roster";
 	if(seriesID == 1) concertRoster << endl << "Masterworks - ";
-	else if(seriesID ==2) concertRoster << endl << "Pops - ";
+	else if(seriesID == 2) concertRoster << endl << "Pops - ";
 	else if(seriesID == 3) concertRoster << endl << "Specials - ";
 	else if(seriesID == 4) concertRoster << endl << "Kids - ";
 	else cerr << "ERROR: invalid value for seriesID! Value given: " << seriesID << ". Ending program."<< endl;
@@ -112,27 +112,36 @@ void create_program(){
 	concertRoster << "String count: " << thisGig.get_violin1Count() << "/" <<thisGig.get_violin2Count() << "/"
 			<< thisGig.get_violaCount() << "/" << thisGig.get_celloCount() << "/" << thisGig.get_bassCount() << endl << endl;
 
-
-
-
 	// generate sections (add to output file as you go)
 
-	// should there be a generic "generate section" function that you pass gigs to?
+	cout << "First Violins" << endl; // let user know what section
 
-	// set 1st violin section
-	// set 2nd violin section
-	// set viola section
-	// set cello section
-	// set bass section
+	concertRoster << "First Violins" << endl << endl;
+	generate_section_roster(violin1Section, thisGig.get_violin1Count(), seriesID, concertRoster);
 
+	cout << "Second Violins" << endl; // let user know what section
 
+	concertRoster << "Second Violins" << endl << endl;
+	generate_section_roster(violin2Section, thisGig.get_violin2Count(), seriesID, concertRoster);
 
+	cout << "Viola" << endl; // let user know what section
 
+	concertRoster << "Viola" << endl << endl;
+	generate_section_roster(violaSection, thisGig.get_violaCount(), seriesID, concertRoster);
 
+	cout << "Cello" << endl; // let user know what section
+
+	concertRoster << "Cello" << endl << endl;
+	generate_section_roster(celloSection, thisGig.get_celloCount(), seriesID, concertRoster);
+
+	cout << "Bass" << endl; // let user know what section
+
+	concertRoster << "Bass" << endl << endl;
+	generate_section_roster(bassSection, thisGig.get_bassCount(), seriesID, concertRoster);
 
 	concertRoster.close(); // close concert roster file
 	cout << "Concert roster file " << gigName << ".txt saved." << endl;
-
+	/*
 	ofstream orchestraRoster;
 	orchestraRoster.open("orchestraRoster.txt");
 	if(!orchestraRoster)
@@ -148,13 +157,58 @@ void create_program(){
 
 	orchestraRoster.close();
 	cout << "Orchestra master roster file saved." << endl;
+	*/
 	cout << "Returning to main menu. . ." << endl;
 }
 
 void edit_program(){
-	cout << "This function is currently non-functional" << endl;
+	cout << "This function (edit_program) is currently non-functional" << endl;
 }
 
 void edit_roster(){
-	cout << "This function is currrently non-functional" << endl;
+	cout << "This function (edit_roster) is currrently non-functional" << endl;
+}
+
+void generate_section_roster(vector<Musician> section, int stringCount, const int seriesID, ofstream& file){
+	int musiciansScheduled = 0; // # of musicians added to section for this gig
+	int selection; // stores user selection
+
+	for(auto i:section){ // for entire section
+		i.set_available(true); // make all musicians available
+	}
+
+	// select a section principal
+	if(stringCount > 0){
+		for(int i = 0; i < section.size(); i++){
+			cout << i << ". " << section[i].get_name() << endl;
+		}
+		cout << "Please select a section principal: ";
+		cin >> selection; // get user choice
+		section[selection].set_available(false); // make musician unavailable
+		file << "Principal: " << section[selection].get_name() << endl; // add to gig roster
+		section[selection].add_gig(seriesID); // increment musician's gig count
+		musiciansScheduled++; // increment # of scheduled musicians
+	}
+	// select assistant principal
+	if(stringCount > 1){
+		for(int i = 0; i < section.size(); i++){
+			if(section[i].get_available() == true){
+				cout << i << ". " << section[i].get_name() << endl;
+			}
+		}
+		cout << "Please select an assistant principal: ";
+		cin >> selection; // get user choice
+		section[selection].set_available(false); // make musician unavailable
+		file << "Assistant Principal: " << section[selection].get_name() << endl; // add to gig roster
+		section[selection].add_gig(seriesID); // increment musician's gig count
+		musiciansScheduled++; // increment # of scheduled musicians
+	}
+	// prompt user to select musicians who are unavailable
+	if(musiciansScheduled < stringCount){
+
+	}
+	// loop: musicians unavailable?
+	// loop: force include any musicians?
+	// fill section until full
+	// if empty spaces, print "sub/extra"
 }
