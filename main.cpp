@@ -11,14 +11,14 @@
 
 using namespace std;
 
-int main(){
+// vectors storing all musicians currently under contract to the orchestra
+vector<Musician> violin1Section;
+vector<Musician> violin2Section;
+vector<Musician> violaSection;
+vector<Musician> celloSection;
+vector<Musician> bassSection;
 
-	// vectors storing all musicians currently under contract to the orchestra
-	vector<Musician> violin1Section;
-	vector<Musician> violin2Section;
-	vector<Musician> violaSection;
-	vector<Musician> celloSection;
-	vector<Musician> bassSection;
+int main(){
 
 	cout << "STRING SECTION MANAGER" << endl;
 

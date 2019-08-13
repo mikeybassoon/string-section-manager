@@ -8,6 +8,7 @@
 #ifndef FUNCTIONS_H_
 #define FUNCTIONS_H_
 
+#include "orchestra.h"
 #include <iostream>
 #include <fstream>
 #include <vector>

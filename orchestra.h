@@ -15,8 +15,6 @@
 
 using namespace std;
 
-
-
 class Musician{
 private:
 	string title;
@@ -70,5 +68,8 @@ public:
 	int get_celloCount();
 	int get_bassCount();
 };
+
+
+extern vector<Musician> violin1Section, violin2Section, violaSection, celloSection, bassSection;
 
 #endif /* ORCHESTRA_H_ */
