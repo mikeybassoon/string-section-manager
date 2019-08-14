@@ -12,14 +12,11 @@ using namespace std;
 
 Musician::Musician(){ // default class constructor
 	mastersScheduled = popsScheduled = kidsScheduled = specialsScheduled = 0;
+	available = true;
 }
 
 Musician::~Musician(){
 
-}
-
-void Musician::set_title(string newTitle){
-	title = newTitle;
 }
 
 void Musician::set_name(string newName){
@@ -73,10 +70,6 @@ void Musician::add_gig(int seriesID){
 		add_kids();
 }
 
-string Musician::get_title(){
-	return title;
-}
-
 string Musician::get_name(){
 	return name;
 }
@@ -95,6 +88,21 @@ int Musician::get_specials(){
 
 int Musician::get_kids(){
 	return kidsScheduled;
+}
+
+int Musician::get_total(){
+	return mastersScheduled + popsScheduled + specialsScheduled + kidsScheduled;
+}
+
+int Musician::get_total(int seriesID){
+	if(seriesID == 1) return mastersScheduled;
+	else if(seriesID == 2) return popsScheduled;
+	else if(seriesID == 3) return specialsScheduled;
+	else if(seriesID == 4) return kidsScheduled;
+	else{
+		cerr << "Invalid series ID!" << endl;
+	}
+	return -1;
 }
 
 bool Musician::get_available(){

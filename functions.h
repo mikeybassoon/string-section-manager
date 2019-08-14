@@ -41,19 +41,27 @@ int main_menu();
 
 /* void create_program()
  * Purpose: generates a roster for a new program
- * Parameters:
- * 	<1> vector<Musician> - first violins
- * 	<2> vector<Musician> - second violins
- * 	<3> vector<Musician> - violas
- * 	<4> vector<Musician> - celli
- * 	<5> vector<Musician> - basses
+ * Parameters: none
  * No return
  * Side effects:
  * 		<1> Roster file (.txt) created for that program
  * 		<2> Orchestra roster updated with new gig totals for each musician
  */
-void create_program(vector<Musician>, vector<Musician>, vector<Musician>,
-		vector<Musician>, vector<Musician>);
+void create_program();
+
+/* void print_section()
+ * Purpose: prints specified section to master orchestra roster
+ * Parameters:
+ * 	<1> vector<Musician> - the section to be printed
+ * 	<2> ofstream& - the output file (orchestraRoster.txt)
+ * 	<3> string& - the section name (as it appears in the output file)
+ * Preconditions:
+ * 	<1> section name must be vln1, vln2, vla, vcl, or cb
+ * No return
+ * Side effects:
+ * 	<1> Each musician, along with their associated statistics, printed to output file
+ */
+void print_section(vector<Musician>, ofstream&, string&);
 
 void edit_program(); // requires definition
 
@@ -73,6 +81,17 @@ void edit_roster(); // requires definition
  * 	<2> Gig total statistics updated for all musicians
  */
 void generate_section_roster(vector<Musician>, int, const int, ofstream&);
+
+/* void assignExtras()
+ * Purpose: Fills remaining slots in section with extra musicians
+ * Parameters:
+ * 	<1> const int - number of extras needed
+ * 	<2> ofstream - concert roster file
+ * No return
+ * Side effects:
+ * 	<1> All vacant spots in section on roster file will be marked as a substitute or extra musician
+ */
+void assignExtras(const int, ofstream&);
 
 
 #endif /* FUNCTIONS_H_ */

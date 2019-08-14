@@ -12,19 +12,18 @@
 #ifndef ORCHESTRA_H_
 #define ORCHESTRA_H_
 #define HOW_MANY_SERIES 4 // number of different subscription series being tracked
+#define outputWidth 15
 
 using namespace std;
 
 class Musician{
 private:
-	string title;
 	string name;
 	int mastersScheduled, popsScheduled, specialsScheduled, kidsScheduled;
 	bool available; // available for current gig?
 public:
 	Musician(); // constructor
 	~Musician(); // destructor
-	void set_title(string);
 	void set_name(string);
 	void set_available(bool);
 	void add_masters(); // increment by 1
@@ -36,12 +35,13 @@ public:
 	void add_kids(); // increment by 1
 	void add_kids(int);
 	void add_gig(int); // increments gig count, parameter is the series ID for the gig
-	string get_title();
 	string get_name();
 	int get_masters();
 	int get_pops();
 	int get_specials();
 	int get_kids();
+	int get_total(); // total gigs across all series
+	int get_total(int); // total gigs for given series ID
 	bool get_available();
 };
 

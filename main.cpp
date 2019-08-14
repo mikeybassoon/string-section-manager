@@ -25,7 +25,7 @@ int main(){
 	ifstream inputFile;
 
 	bool continueProgram = true; // program will continue running until user terminates it
-	while (continueProgram == true) { // loop of main algorithm
+	while (continueProgram) { // loop of main algorithm
 
 		cout << "Updating roster information . . . " << endl;
 
@@ -37,8 +37,6 @@ int main(){
 			}
 			else cout << "Roster file opened successfully . . ." << endl;
 		inputFile.ignore(256, '\n'); // skip first line of input file (key to interpret the file)
-		inputFile.ignore(256, '\n'); // skip second line of input file (warning)
-		int linecount = 3; // initialize line counter (for error checking loop)
 		while(!inputFile.eof()){ // until entire file is read
 			string section;
 			inputFile >> section;
@@ -52,13 +50,6 @@ int main(){
 				saveMusicianStats(celloSection, inputFile);
 			else if(section == "cb")
 				saveMusicianStats(bassSection, inputFile);
-			else{
-				cerr << "ERROR: Invalid section identifier in input file: line " << linecount << endl;
-				cerr << "Value given: " << section << endl;
-				cerr << "Ending program" << endl;
-				return -1;
-			}
-			linecount++;
 		} // input file read
 		inputFile.close();
 		cout << "Roster updated!" << endl;
@@ -73,7 +64,7 @@ int main(){
 		return 0;
 	}
 	else if(userSelection == 1) // create new program?
-		create_program(violin1Section, violin2Section, violaSection, celloSection, bassSection);
+		create_program();
 	else if(userSelection == 2) // edit program?
 		edit_program();
 	else if(userSelection == 3) // edit section roster?
