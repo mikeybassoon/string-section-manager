@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void saveMusicianStats(vector<Musician> section, ifstream& inputFile){
+void saveMusicianStats(vector<Musician>& section, ifstream& inputFile){
 	int vectorIndex;
 	int masters, pops, specials, kids;
 	string name;
@@ -50,7 +50,7 @@ int main_menu(){
 	while(!exit){
 		cout << "Enter your selection: ";
 		cin >> selection;
-		if(selection >= 0 and selection <= 3)
+		if(selection >= 0 and selection <= 3) // valid selection?
 			return selection;
 		else cout << "Invalid selection, please try again." << endl;
 	}
@@ -69,9 +69,9 @@ void create_program(){
 	cout << "4. Kids" << endl;
 	cout << "5. Return to main menu" << endl;
 	cout << "Enter your selection: ";
-	while(seriesID < 1 or seriesID > 5){ // until user provides valid response
+	while(seriesID < 1 or seriesID > 5){ // until user provides valid input
 		cin >> seriesID; // get user input
-		if(seriesID < 1 or seriesID >5){ // invalid selection?
+		if(seriesID < 1 or seriesID >5){ // invalid input?
 			cout << endl << "Invalid selection, please try again: ";
 		}
 	}
@@ -182,7 +182,7 @@ void create_program(){
 	cout << "Returning to main menu. . ." << endl;
 }
 
-void print_section(vector<Musician> section, ofstream& file, const string& sectionName){
+void print_section(vector<Musician>& section, ofstream& file, const string& sectionName){
 	for(auto i = 0; i < section.size(); i++){ // for all musicians in section
 		file << setw(outputWidth) << left << sectionName;
 		file << setw(outputWidth) << left << section[i].get_masters();
@@ -201,8 +201,8 @@ void edit_roster(){
 	cout << "This function (edit_roster) is currrently non-functional" << endl;
 }
 
-void generate_section_roster(vector<Musician> section, int stringCount, const int seriesID, ofstream& file){
-	if (stringCount == 0) return; // end func if no one in section
+void generate_section_roster(vector<Musician>& section, int stringCount, const int seriesID, ofstream& file){
+	if (stringCount < 1) return; // end func if no one in section
 	int musiciansScheduled = 0; // # of musicians added to section for this gig
 	int selection; // stores user selection
 	bool next; // flag to move on from current menu
@@ -212,9 +212,6 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	}
 
 	// select a section principal
-	if(stringCount == musiciansScheduled)
-		return;
-
 	for(auto i = 0; i < section.size(); i++){ // for each musician in section
 		cout << i << ". " << section[i].get_name() << endl;
 	}
@@ -250,13 +247,14 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	cout << endl << "Are any musicians unavailable for this gig?" << endl;
 	while(!next){ // until exit flag set
 		for(auto i = 0; i < section.size(); i++){ // for all musicians in section
-			if(section[i].get_available() == true) // this musician available?
+			if(section[i].get_available()) // this musician available?
 				cout << i << ". " << section[i].get_name() << endl;
 		}
 		cout << "-1. No, all of these musicians are available." << endl;
 		cout << "Please make a selection: ";
 		cin >> selection; // get user selection
-		if(selection >= 0 and selection < section.size() ){ // valid selection made?
+		if(selection >= 0 and selection < section.size()
+				and section[selection].get_available()){ // valid selection made?
 			section[selection].set_available(false); // make that musician unavailable
 			cout << endl << "Anyone else unavailable?" << endl;
 		}
@@ -273,13 +271,14 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	cout << endl << "Are there any musicians you want on this gig for sure?" << endl;
 	while(!next){ // until exit flag set
 		for(auto i = 0; i < section.size(); i++){ // for all musicians in section
-			if(section[i].get_available() == true) // this musician available?
+			if(section[i].get_available()) // this musician available?
 				cout << i << ". " << section[i].get_name() << endl;
 		}
 		cout << "-1. No, select the rest of the section automatically." << endl;
 		cout << "Please make a selection: ";
 		cin >> selection; // get user selection
-		if(selection >= 0 and selection < section.size() ){ // valid selection made?
+		if(selection >= 0 and selection < section.size()
+				and section[selection].get_available()){ // valid selection made?
 			section[selection].set_available(false); // make that musician unavailable
 			file << setw(23) << " ";
 			file << section[selection].get_name() << endl; // add musician name to gig roster
