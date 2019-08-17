@@ -28,7 +28,7 @@ using namespace std;
  * 		<3> Number of masters, pops, specials and kids concerts that musician is
  * 			currently scheduled for
  */
-void saveMusicianStats(vector<Musician>&, ifstream&);
+void saveMusicianStats(vector<Musician>, ifstream&);
 
 /* int main_menu()
  * Purpose: displays main program menu and returns user selection

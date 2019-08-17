@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void saveMusicianStats(vector<Musician>& section, ifstream& inputFile){
+void saveMusicianStats(vector<Musician> section, ifstream& inputFile){
 	int vectorIndex;
 	int masters, pops, specials, kids;
 	string name;
