@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void saveMusicianStats(vector<Musician>& section, ifstream& inputFile){
+void saveMusicianStats(vector<Musician> section, ifstream& inputFile){
 	int vectorIndex;
 	int masters, pops, specials, kids;
 	string name;
@@ -163,32 +163,27 @@ void create_program(){
 	orchestraRoster << setw(outputWidth) << left << "Name" << endl;
 
 	// print first violins
-	string section = "vln1";
-	print_section(violin1Section, orchestraRoster, section);
+	print_section(violin1Section, orchestraRoster, "vln1");
 
 	// print second violins
-	section = "vln2";
-	print_section(violin2Section, orchestraRoster, section);
+	print_section(violin2Section, orchestraRoster, "vln2");
 
 	// print violas
-	section = "vla";
-	print_section(violaSection, orchestraRoster, section);
+	print_section(violaSection, orchestraRoster, "vla");
 
 	// print cellos
-	section = "vcl";
-	print_section(celloSection, orchestraRoster, section);
+	print_section(celloSection, orchestraRoster, "vcl");
 
 	// print basses
-	section = "cb";
-	print_section(bassSection, orchestraRoster, section);
+	print_section(bassSection, orchestraRoster, "cb");
 
 	orchestraRoster.close();
 	cout << "Orchestra master roster file saved." << endl;
 	cout << "Returning to main menu. . ." << endl;
 }
 
-void print_section(vector<Musician> section, ofstream& file, string& sectionName){
-	for(int i = 0; i < section.size(); i++){ // for all musicians in section
+void print_section(vector<Musician> section, ofstream& file, const string& sectionName){
+	for(auto i = 0; i < section.size(); i++){ // for all musicians in section
 		file << setw(outputWidth) << left << sectionName;
 		file << setw(outputWidth) << left << section[i].get_masters();
 		file << setw(outputWidth) << left << section[i].get_pops();
@@ -212,7 +207,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	int selection; // stores user selection
 	bool next; // flag to move on from current menu
 
-	for(int i = 0; i < section.size(); i++){ // for entire section
+	for(auto i = 0; i < section.size(); i++){ // for entire section
 		section[i].set_available(true); // make this musician available
 	}
 
@@ -220,7 +215,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	if(stringCount == musiciansScheduled)
 		return;
 
-	for(int i = 0; i < section.size(); i++){ // for each musician in section
+	for(auto i = 0; i < section.size(); i++){ // for each musician in section
 		cout << i << ". " << section[i].get_name() << endl;
 	}
 	cout << "Please select a section principal: ";
@@ -235,7 +230,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 		return;
 
 	// select assistant principal
-	for(int i = 0; i < section.size(); i++){ // for each musician in section
+	for(auto i = 0; i < section.size(); i++){ // for each musician in section
 		if(section[i].get_available() == true) // this musician available?
 			cout << i << ". " << section[i].get_name() << endl;
 	}
@@ -254,7 +249,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	next = false; // set flag to continue menu loop
 	cout << endl << "Are any musicians unavailable for this gig?" << endl;
 	while(!next){ // until exit flag set
-		for(int i = 0; i < section.size(); i++){ // for all musicians in section
+		for(auto i = 0; i < section.size(); i++){ // for all musicians in section
 			if(section[i].get_available() == true) // this musician available?
 				cout << i << ". " << section[i].get_name() << endl;
 		}
@@ -277,7 +272,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 	next = false; // disable loop exit flag
 	cout << endl << "Are there any musicians you want on this gig for sure?" << endl;
 	while(!next){ // until exit flag set
-		for(int i = 0; i < section.size(); i++){ // for all musicians in section
+		for(auto i = 0; i < section.size(); i++){ // for all musicians in section
 			if(section[i].get_available() == true) // this musician available?
 				cout << i << ". " << section[i].get_name() << endl;
 		}
@@ -308,7 +303,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 		int winningTotalGigs; // number of total gigs this season the winning musician has
 
 		// find first available musician and set this as baseline
-		for(int i = 0; i < section.size(); i++){ // for all musicians in section
+		for(auto i = 0; i < section.size(); i++){ // for all musicians in section
 			if(section[i].get_available() ){ // this musician available?
 				// make this musician the winner
 				winningIndex = i;
@@ -322,7 +317,7 @@ void generate_section_roster(vector<Musician> section, int stringCount, const in
 			return;
 		}
 
-		for(int i = 1; i < section.size(); i++){ // for each musician in section
+		for(auto i = 1; i < section.size(); i++){ // for each musician in section
 			// run compare function between current and winning index
 			if(i != winningIndex and section[i].get_available()){ // this musician available and not already our baseline musician?
 				if(section[i].get_total(seriesID) < winningSeriesGigs){ // new winner?
