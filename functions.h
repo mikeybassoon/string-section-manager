@@ -61,7 +61,7 @@ void create_program();
  * Side effects:
  * 	<1> Each musician, along with their associated statistics, printed to output file
  */
-void print_section(vector<Musician>, ofstream&, const string&);
+void print_section(vector<Musician>&, ofstream&, const string&);
 
 void edit_program(); // requires definition
 
@@ -80,7 +80,7 @@ void edit_roster(); // requires definition
  * 		(with one blank line below the roster list)
  * 	<2> Gig total statistics updated for all musicians
  */
-void generate_section_roster(vector<Musician>, int, const int, ofstream&);
+void generate_section_roster(vector<Musician>&, int, const int, ofstream&);
 
 /* void assignExtras()
  * Purpose: Fills remaining slots in section with extra musicians
