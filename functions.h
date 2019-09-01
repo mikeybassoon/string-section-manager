@@ -28,7 +28,7 @@ using namespace std;
  * 		<3> Number of masters, pops, specials and kids concerts that musician is
  * 			currently scheduled for
  */
-void saveMusicianStats(vector<Musician>, ifstream&);
+void readMusicianStats(vector<Musician>&, ifstream&);
 
 /* int main_menu()
  * Purpose: displays main program menu and returns user selection
@@ -65,7 +65,23 @@ void print_section(vector<Musician>&, ofstream&, const string&);
 
 void edit_program(); // requires definition
 
+/* void edit_roster()
+ * Purpose: Allows user to edit the master list of musicians
+ * Parameters: n/a
+ * No return
+ */
 void edit_roster(); // requires definition
+
+/* void display_roster()
+ * Purpose: Prints all musicians in a given section
+ * Parameters:
+ * 	<1> vector<Musician> - section vector to be printed
+ * Preconditions:
+ * No return
+ * Side effect:
+ * 	<1> List of musicians printed, each assigned a number equal to their index position in the section vector + 1
+ */
+void display_roster(vector<Musician>&);
 
 /* void generate_section_roster()
  * Purpose: Fills section roster for a program

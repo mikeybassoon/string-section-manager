@@ -1,8 +1,8 @@
 /*
  * orchestra.cpp
  *
- *  Created on: Aug 4, 2019
- *      Author: michaelmacaulay
+ *  Contains implementation of functions described in "orchestra.h"
+ *  	See header file for explanation of function behaviour
  */
 
 #include "orchestra.h"
@@ -12,7 +12,7 @@ using namespace std;
 
 Musician::Musician(){ // default class constructor
 	mastersScheduled = popsScheduled = kidsScheduled = specialsScheduled = 0;
-	available = true;
+	idNumber = -1;
 }
 
 Musician::~Musician(){
@@ -23,8 +23,8 @@ void Musician::set_name(string newName){
 	name = newName;
 }
 
-void Musician::set_available(bool status){
-	available = status;
+void Musician::set_id(int number){
+	idNumber = number;
 }
 
 void Musician::add_masters(){
@@ -105,8 +105,17 @@ int Musician::get_total(int seriesID){
 	return -1;
 }
 
-bool Musician::get_available(){
-	return available;
+int Musician::get_id() const {
+	return idNumber;
+}
+
+void Musician::operator=(const Musician& original){
+	this->name = original.name;
+	this->kidsScheduled = original.kidsScheduled;
+	this->mastersScheduled = original.mastersScheduled;
+	this->popsScheduled = original.popsScheduled;
+	this->specialsScheduled = original.specialsScheduled;
+	this->idNumber = original.idNumber;
 }
 
 Gig::Gig(int gigSeries){

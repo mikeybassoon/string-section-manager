@@ -20,12 +20,12 @@ class Musician{
 private:
 	string name;
 	int mastersScheduled, popsScheduled, specialsScheduled, kidsScheduled;
-	bool available; // available for current gig?
+	int idNumber; // equal to index position in the master section vector
 public:
 	Musician(); // constructor
 	~Musician(); // destructor
 	void set_name(string);
-	void set_available(bool);
+	void set_id(int);
 	void add_masters(); // increment by 1
 	void add_masters(int);
 	void add_pops(); // increment by 1
@@ -42,7 +42,9 @@ public:
 	int get_kids();
 	int get_total(); // total gigs across all series
 	int get_total(int); // total gigs for given series ID
-	bool get_available();
+	int get_id() const;
+
+	void operator= (const Musician&); // copies all details of a musician
 };
 
 class Gig{

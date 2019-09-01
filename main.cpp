@@ -41,15 +41,15 @@ int main(){
 			string section;
 			inputFile >> section;
 			if(section == "vln1")
-				saveMusicianStats(violin1Section, inputFile);
+				readMusicianStats(violin1Section, inputFile);
 			else if(section == "vln2")
-				saveMusicianStats(violin2Section, inputFile);
+				readMusicianStats(violin2Section, inputFile);
 			else if(section == "vla")
-				saveMusicianStats(violaSection, inputFile);
+				readMusicianStats(violaSection, inputFile);
 			else if(section == "vcl")
-				saveMusicianStats(celloSection, inputFile);
+				readMusicianStats(celloSection, inputFile);
 			else if(section == "cb")
-				saveMusicianStats(bassSection, inputFile);
+				readMusicianStats(bassSection, inputFile);
 		} // input file read
 		inputFile.close();
 		cout << "Roster updated!" << endl;
@@ -69,8 +69,6 @@ int main(){
 		edit_program();
 	else if(userSelection == 3) // edit section roster?
 		edit_roster();
-
-
 	} // end of main program loop
 	return 0;
 }
