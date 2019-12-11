@@ -1,4 +1,4 @@
-var fs = Require('fs');
+var fs = require('fs');
 
 function Musician(){
 	// gigs this musician scheduled for, by series
@@ -14,7 +14,7 @@ function Section() {
 		if(series === 'pops')
 			musicians.sort(function(a,b){return a.popsGigs - b.popsGigs});
 		else if(series === 'mw')
-			musicians.sort(function(a,b){retun a.mwGigs - b.mwGigs});
+			musicians.sort(function(a,b){return a.mwGigs - b.mwGigs});
 		else if(series === 'specials')
 			musicians.sort(function(a,b){return a.mwGigs - b. mwGigs});
 		else if(series === 'family')
